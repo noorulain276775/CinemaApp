@@ -1,0 +1,16 @@
+﻿@model CinemaApp.Models.Movie
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
+<p>@Model.Genre</p>
+<p>Director Name: @Model.Director</p>
+<p>Release Date: @Model.ReleaseDate</p>
+<p>Duration: @Model.Duration</p>
+<p>@Model.ImageUrl</p>
+<p>@Model.TrailerUrl</p>
+
+
