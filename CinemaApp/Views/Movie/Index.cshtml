@@ -1,16 +1,48 @@
-﻿@model CinemaApp.Models.Movie
+﻿@model CinemaApp.ViewModels.RandomMovieViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
-<p>@Model.Description</p>
-<p>@Model.Genre</p>
-<p>Director Name: @Model.Director</p>
-<p>Release Date: @Model.ReleaseDate</p>
-<p>Duration: @Model.Duration</p>
-<p>@Model.ImageUrl</p>
-<p>@Model.TrailerUrl</p>
+@ {
+    var className = Model.Customers.Count > 5 ? "popular" : null;
+
+}
+
+@if (Model.Movie != null)
+{
+    <div class="card" style="width: 19rem;">
+        <img class="card-img-top" src="@Model.Movie.ImageUrl" alt="Card image cap" width="300" height="300">
+        <div class="card-body">
+            <h5 class="card-title"@Model.Movie.Name</h5>
+            <p class="card-text">@Model.Movie.Description</p>
+            <div class="d-flex justify-content-between">
+                <a href="@Model.Movie.TrailerUrl" class="btn btn-primary">Watch Trailer</a>
+                <a href="@Model.Movie.TrailerUrl" class="btn btn-outline-secondary">More Details</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>Movie details not available.</p>
+}
+
+
+@{
+    if (Model.Customers.Count > 0)
+    {
+        <h3>Customers who rented this movie:</h3>
+        foreach (var customer in Model.Customers)
+        {
+            <p>@customer.Name</p>
+        }
+    }
+    else
+    {
+        <p>No customers rented this movie.</p>
+    }
+}
+
 
 

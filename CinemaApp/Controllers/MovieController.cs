@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.MappingViews;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CinemaApp.Models;
+using CinemaApp.ViewModels;
 
 namespace CinemaApp.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie
+        // GET: All Movies
         public ActionResult Index()
         {
             var movie = new Movie()
@@ -24,8 +26,28 @@ namespace CinemaApp.Controllers
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
                 TrailerUrl = "https://www.youtube.com/watch?v=6hB3S9bIaco"
             };
-
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Noor Ibrahim"},
+                new Customer {Name = "Bilal Ahmed"}
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+            return View(viewModel);
         }
+
+
+        // GET: Movies By Release Date
+        [Route("movies/released/{year}/{month:regex(\\d{1,2}):range(1, 12)}")]
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content($"Year: {year}, Month: {month}");
+        }
+
+
+
     }
 }
