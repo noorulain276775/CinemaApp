@@ -4,17 +4,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@ {
-    var className = Model.Customers.Count > 5 ? "popular" : null;
-
+@{
+    var isPopular = Model.Customers != null && Model.Customers.Count > 5;
+    var className = isPopular ? "popular" : null;
 }
+
+
 
 @if (Model.Movie != null)
 {
     <div class="card" style="width: 19rem;">
+        @if (isPopular)
+        {
+            <span style="position: absolute; top: 10px; left: 10px; background-color: red; color: white; padding: 5px 10px; font-size: 12px; border-radius: 3px;">
+                Popular
+            </span>
+        }
         <img class="card-img-top" src="@Model.Movie.ImageUrl" alt="Card image cap" width="300" height="300">
         <div class="card-body">
-            <h5 class="card-title"@Model.Movie.Name</h5>
+            <h5 class="card-title">@Model.Movie.Name</h5>
             <p class="card-text">@Model.Movie.Description</p>
             <div class="d-flex justify-content-between">
                 <a href="@Model.Movie.TrailerUrl" class="btn btn-primary">Watch Trailer</a>
@@ -29,7 +37,7 @@ else
 }
 
 
-@{
+@*@{
     if (Model.Customers.Count > 0)
     {
         <h3>Customers who rented this movie:</h3>
@@ -42,7 +50,7 @@ else
     {
         <p>No customers rented this movie.</p>
     }
-}
+}*@
 
 
 

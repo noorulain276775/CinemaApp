@@ -29,7 +29,11 @@ namespace CinemaApp.Controllers
             var customers = new List<Customer>
             {
                 new Customer {Name = "Noor Ibrahim"},
-                new Customer {Name = "Bilal Ahmed"}
+                new Customer {Name = "Bilal Ahmed"},
+                new Customer {Name = "Ghazia"},
+                new Customer {Name = "Rica"},
+                new Customer {Name = "Rose"},
+                new Customer {Name = "May"}
             };
             var viewModel = new RandomMovieViewModel
             {
